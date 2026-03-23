@@ -6,7 +6,7 @@ from pathlib import Path
 import settings as S
 
 FIELDS = [
-    "timestamp", "direction", "expiry_min", "stake", "profit", "win",
+    "timestamp", "direction", "expiry_ticks", "stake", "profit", "win",
     "confidence", "score", "hurst", "mg_step", "balance",
 ]
 
@@ -37,20 +37,20 @@ class TradeLogger:
             with open(p, "w", newline="") as f:
                 csv.DictWriter(f, fieldnames=FIELDS).writeheader()
 
-    def record(self, direction, expiry_min, stake, profit, win,
+    def record(self, direction, expiry, stake, profit, win,
                confidence, score, hurst, mg_step, balance):
         row = {
-            "timestamp":  datetime.now().isoformat(),
-            "direction":  direction,
-            "expiry_min": expiry_min,
-            "stake":      stake,
-            "profit":     round(profit, 2),
-            "win":        win,
-            "confidence": round(confidence, 4),
-            "score":      score,
-            "hurst":      round(hurst, 4),
-            "mg_step":    mg_step,
-            "balance":    round(balance, 2),
+            "timestamp":    datetime.now().isoformat(),
+            "direction":    direction,
+            "expiry_ticks": expiry,
+            "stake":        stake,
+            "profit":       round(profit, 2),
+            "win":          win,
+            "confidence":   round(confidence, 4),
+            "score":        score,
+            "hurst":        round(hurst, 4) if hurst else 0.0,
+            "mg_step":      mg_step,
+            "balance":      round(balance, 2),
         }
         with open(S.TRADES_FILE, "a", newline="") as f:
             csv.DictWriter(f, fieldnames=FIELDS).writerow(row)
