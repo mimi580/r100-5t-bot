@@ -127,13 +127,13 @@ LAYER2_DIRECTION_MATCH = True  # all voting Layer 2 models must agree with Layer
 
 # ── Martingale ────────────────────────────────────────────────────
 FIRST_STAKE         = 0.35
-MARTINGALE_FACTOR   = 1.89
+MARTINGALE_FACTOR   = 2.1
 MARTINGALE_AFTER    = 2
-MARTINGALE_MAX_STEP = 3
+MARTINGALE_MAX_STEP = 4
 
 # ── Risk ──────────────────────────────────────────────────────────
-TARGET_PROFIT       = 10.0
-STOP_LOSS           = 20.0
+TARGET_PROFIT       = 30.0
+STOP_LOSS           = 40.0
 
 # ── Cooldown ──────────────────────────────────────────────────────
 # 5 ticks settle in ~5 seconds. Short cooldown appropriate.
